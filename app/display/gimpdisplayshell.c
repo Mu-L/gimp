@@ -472,9 +472,11 @@ gimp_display_shell_constructed (GObject *object)
       /* These values are arbitrary. The width is determined by the
        * menubar and the height is chosen to give a window aspect
        * ratio of roughly 3:1 (as requested by the UI team).
+       * It must be smaller than the minimal supported display
+       * dimension (1280x720 a.k.a. 720p).
        */
       image_width  = GIMP_DEFAULT_IMAGE_WIDTH;
-      image_height = GIMP_DEFAULT_IMAGE_HEIGHT / 3;
+      image_height = GIMP_DEFAULT_IMAGE_HEIGHT / 4;
     }
 
   shell->dot_for_dot = config->default_dot_for_dot;
@@ -493,7 +495,8 @@ gimp_display_shell_constructed (GObject *object)
   /* adjust the initial scale -- so that window fits on screen. */
   if (image)
     {
-      gimp_display_shell_set_initial_scale (shell, 1.0, //scale,
+      gimp_display_shell_set_initial_scale (shell,
+                                            (gdouble) gtk_widget_get_scale_factor (GTK_WIDGET (shell)),
                                             &shell_width, &shell_height);
     }
   else

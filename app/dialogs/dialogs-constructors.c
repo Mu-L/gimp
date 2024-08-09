@@ -778,8 +778,8 @@ dialogs_vectors_list_view_new (GimpDialogFactory *factory,
                                   view_size, 1, TRUE,
                                   gimp_context_get_image (context),
                                   menus_get_global_menu_factory (context->gimp),
-                                  "<Vectors>",
-                                  "/vectors-popup");
+                                  "<Paths>",
+                                  "/paths-popup");
 }
 
 GtkWidget *
